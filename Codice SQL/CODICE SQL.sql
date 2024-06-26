@@ -1,17 +1,17 @@
-DROP TABLE IF EXISTS Propone;
-DROP TABLE IF EXISTS Scarica;
-DROP TABLE IF EXISTS Noleggia;
-DROP TABLE IF EXISTS Danneggia;
-DROP TABLE IF EXISTS Carta_di_credito;
-DROP TABLE IF EXISTS Cineforum;
-DROP TABLE IF EXISTS File;
-DROP TABLE IF EXISTS DVD;
-DROP TABLE IF EXISTS Gestore;
-DROP TABLE IF EXISTS Videoteca;
-DROP TABLE IF EXISTS Fornitore;
-DROP TABLE IF EXISTS Regista;
-DROP TABLE IF EXISTS Cliente;
-DROP TABLE IF EXISTS Comune;
+DROP TABLE IF EXISTS Propone CASCADE;
+DROP TABLE IF EXISTS Scarica CASCADE;
+DROP TABLE IF EXISTS Noleggia CASCADE;
+DROP TABLE IF EXISTS Danneggia CASCADE;
+DROP TABLE IF EXISTS Carta_di_credito CASCADE;
+DROP TABLE IF EXISTS Cineforum CASCADE;
+DROP TABLE IF EXISTS File CASCADE;
+DROP TABLE IF EXISTS DVD CASCADE;
+DROP TABLE IF EXISTS Gestore CASCADE;
+DROP TABLE IF EXISTS Videoteca CASCADE;
+DROP TABLE IF EXISTS Fornitore CASCADE;
+DROP TABLE IF EXISTS Regista CASCADE;
+DROP TABLE IF EXISTS Cliente CASCADE;
+DROP TABLE IF EXISTS Comune CASCADE;
 
 -- Comune
 CREATE TABLE IF NOT EXISTS Comune (
@@ -64,6 +64,7 @@ CREATE TABLE IF NOT EXISTS Gestore (
     Data_di_nascita DATE NOT NULL,
     Nazionalita VARCHAR(50) NOT NULL,
     Nome_comune VARCHAR(100) NOT NULL,
+    Stipendio INT NOT NULL,
     P_IVA_videoteca VARCHAR(11) NOT NULL,
     FOREIGN KEY (Nome_comune) REFERENCES Comune(Nome),
     FOREIGN KEY (P_IVA_videoteca) REFERENCES Videoteca(P_IVA)
@@ -213,10 +214,10 @@ INSERT INTO Videoteca (P_IVA, Nome, Orario_apertura, Orario_chiusura, Indirizzo,
 ('00300000003', 'Videoteca Bologna', '08:00', '17:00', 'Via Bologna 3', 'Bologna');
 
 -- Popola la tabella Gestore
-INSERT INTO Gestore (CF, Nome, Data_di_nascita, Nazionalita, Nome_comune, P_IVA_videoteca) VALUES 
-('G0010000000001', 'Alessandro Neri', '1985-05-05', 'Italiana', 'Parma', '00100000001'),
-('G0020000000002', 'Francesca Russo', '1988-08-08', 'Italiana', 'Firenze', '00200000002'),
-('G0030000000003', 'Luca Moretti', '1992-09-09', 'Italiana', 'Bologna', '00300000003');
+INSERT INTO Gestore (CF, Nome, Data_di_nascita, Nazionalita, Nome_comune, Stipendio, P_IVA_videoteca) VALUES 
+('G0010000000001', 'Alessandro Neri', '1985-05-05', 'Italiana', 'Parma',1300, '00100000001'),
+('G0020000000002', 'Francesca Russo', '1988-08-08', 'Italiana', 'Firenze',1100, '00200000002'),
+('G0030000000003', 'Luca Moretti', '1992-09-09', 'Italiana', 'Bologna',1235, '00300000003');
 
 -- Popola la tabella DVD
 INSERT INTO DVD (ID, Titolo, Genere, Lingua, Minuti, Anno, CF_regista, Nome_fornitore, Nome_videoteca) VALUES 
