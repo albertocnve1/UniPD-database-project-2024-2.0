@@ -6,7 +6,7 @@
 #define PG_HOST "localhost"
 #define PG_USER "albertocanavese"
 #define PG_DB "videoteche"
-#define PG_PASS ""
+#define PG_PASS "" 
 #define PG_PORT "5432"
 
 void exit_nicely(PGconn *conn) {
@@ -16,8 +16,8 @@ void exit_nicely(PGconn *conn) {
 
 PGconn* connect() {
     char conninfo[256];
-    sprintf(conninfo, "host=%s user=%s dbname=%s port=%s",
-        PG_HOST, PG_USER, PG_DB, PG_PORT);
+    sprintf(conninfo, "host=%s user=%s dbname=%s password=%s port=%s",
+        PG_HOST, PG_USER, PG_DB, PG_PASS, PG_PORT);
 
     PGconn* conn = PQconnectdb(conninfo);
 
